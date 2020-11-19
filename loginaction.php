@@ -1,11 +1,10 @@
 <?php
 
-session_start();
-$login = "alice";
-$senha = "123";
-if ($_POST["login"] == $login && $_POST["senha"] == $senha) {
-    $_SESSION["login"] = $_POST["login"];
-}
+require_once "usuario/controle.php";
+
+$usuario = new Usuario();
+
+$usuario->login($_POST["login"], $_POST["senha"]);
 
 require_once 'index.php';
 

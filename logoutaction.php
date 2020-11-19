@@ -1,7 +1,10 @@
 <?php
 
-session_start();
-$_SESSION["login"] = "";
+require_once "usuario/controle.php";
+
+$usuario = new Usuario();
+
+$usuario->logout();
 
 require_once 'index.php';
 

@@ -1,8 +1,11 @@
 <?php
 
-session_start();
+require_once "usuario/controle.php";
 
-$login = $_SESSION["login"];
+$usuario = new Usuario();
+
+$login = $usuario->getLogin();
+
 if (empty($login)) {
     require_once 'loginform.html';
 } else {
