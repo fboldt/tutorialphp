@@ -7,7 +7,7 @@
 
 <body>
     <?php require_once 'usuariologado.php'; ?>
-    <h1>PHP <?php echo phpversion(); ?></h1>
+    <h1><a href="/tutorialphp/">PHP <?php echo phpversion(); ?></a></h1>
 </body>
 
 </html>
