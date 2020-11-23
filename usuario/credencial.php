@@ -14,5 +14,8 @@ class Credencial {
         }
         return $usuarioExiste && $senhaConfere;
     }
+    function insereLoginSenha($login, $senha) {
+        $this->usuarios[$login] = $senha;
+    }
 }
 ?>
