@@ -1,11 +1,14 @@
 <?php
+require_once "usuario/persistencia.php";
 class Credencial {
     private $usuarios;
+    private $persistencia;
     function __construct() {
-        $this->usuarios = array();
-        $this->usuarios['alice'] = '123';
-        $this->usuarios['bruce'] = '234';
-        $this->usuarios['carol'] = '345';
+        $this->persistencia = new Persistencia();
+        $this->usuarios = $this->persistencia->carregaUsuarios();
+    }
+    function __destruct() {
+        $this->persistencia->salvaUsuarios($this->usuarios);
     }
     function confereLoginSenha($login, $senha) {
         $usuarioExiste = array_key_exists($login, $this->usuarios);
