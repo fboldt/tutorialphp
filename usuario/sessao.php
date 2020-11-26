@@ -5,7 +5,6 @@ class Sessao {
     private $credencial;
     function __construct(PersisteCredencial $persistencia) {
         session_start();
-        $persistencia = $persistencia;
         $this->credencial = new Credencial($persistencia);
     }
     function getLogin() {
