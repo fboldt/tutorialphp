@@ -1,7 +1,8 @@
 <?php
 
 require_once "usuario/controle.php";
-logout();
+$controleUsuario = new ControleUsuario();
+$controleUsuario->logout();
 
 require_once 'index.php';
 

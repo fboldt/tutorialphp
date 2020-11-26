@@ -1,8 +1,9 @@
 <?php
-class Persistencia {
+require_once "usuario/credencial.php";
+class Persistencia implements PersisteCredencial {
     private $arquivo;
     function __construct() {
-        $this->arquivo = getcwd() . "/usuario/usuarios.json";
+        $this->arquivo = "/home/francisco/tmp/usuarios.json";
     }
     function carregaUsuarios() {
         $jsonString = file_get_contents($this->arquivo);

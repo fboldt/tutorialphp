@@ -1,10 +1,13 @@
 <?php
-require_once "usuario/persistencia.php";
+interface PersisteCredencial {
+    function carregaUsuarios();
+    function salvaUsuarios($usuarios);
+}
 class Credencial {
     private $usuarios;
     private $persistencia;
-    function __construct() {
-        $this->persistencia = new Persistencia();
+    function __construct(PersisteCredencial $persistencia) {
+        $this->persistencia = $persistencia;
         $this->usuarios = $this->persistencia->carregaUsuarios();
     }
     function __destruct() {

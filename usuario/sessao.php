@@ -1,11 +1,12 @@
 <?php
 require_once "usuario/credencial.php";
 
-class Usuario {
+class Sessao {
     private $credencial;
-    function __construct() {
+    function __construct(PersisteCredencial $persistencia) {
         session_start();
-        $this->credencial = new Credencial();
+        $persistencia = $persistencia;
+        $this->credencial = new Credencial($persistencia);
     }
     function getLogin() {
         return $_SESSION['login'];

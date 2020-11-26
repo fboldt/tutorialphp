@@ -1,25 +1,31 @@
 <?php
 require_once "usuario/credencial.php";
-require_once "usuario/usuario.php";
+require_once "usuario/sessao.php";
+require_once "usuario/persistencia.php";
 
-function getLogin() {
-    $usuario = new Usuario();
-    $login = $usuario->getLogin();
-    return $login;
-}
+class ControleUsuario {
+    private $persistencia;
+    private $sessao;
+    function __construct() {
+        $this->persistencia = new Persistencia();
+        $this->sessao = new Sessao($this->persistencia);
+    }
+    function getLogin() {
+        $login = $this->sessao->getLogin();
+        return $login;
+    }
 
-function login($login, $senha) {
-    $usuario = new Usuario();
-    $usuario->login($login, $senha);
-}
+    function login($login, $senha) {
+        $this->sessao->login($login, $senha);
+    }
 
-function logout() {
-    $usuario = new Usuario();
-    $usuario->logout();
-}
+    function logout() {
+        $this->sessao->logout();
+    }
 
-function insereLoginSenha($login, $senha) {
-    $credencial = new Credencial();
-    $credencial->insereLoginSenha($login, $senha);
+    function insereLoginSenha($login, $senha) {
+        $credencial = new Credencial($this->persistencia);
+        $credencial->insereLoginSenha($login, $senha);
+    }
 }
 ?>

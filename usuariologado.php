@@ -1,7 +1,8 @@
 <?php
 
 require_once "usuario/controle.php";
-$login = getLogin();
+$controleUsuario = new ControleUsuario();
+$login = $controleUsuario->getLogin();
 
 if (empty($login)) {
     require_once 'loginform.html';
