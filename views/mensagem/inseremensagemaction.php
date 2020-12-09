@@ -1,7 +1,7 @@
 <?php
 chdir("../../");
-require_once "mensagem/controle.php";
-$controleMensagem = new ControleMensagem();
+require_once "controle.php";
+$controleMensagem = criaControleMensagem();
 $controleMensagem->insereMensagem($_POST['texto']);
 
 header("Location: /tutorialphp/");

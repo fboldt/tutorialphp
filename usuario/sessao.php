@@ -1,19 +1,14 @@
 <?php
-require_once "usuario/credencial.php";
-
 class Sessao {
     private $credencial;
-    function __construct(PersisteCredencial $persistencia) {
+    function __construct() {
         session_start();
-        $this->credencial = new Credencial($persistencia);
     }
     function getLogin() {
         return $_SESSION['login'];
     }
-    function login($login, $senha) {
-        if ($this->credencial->confereLoginSenha($login, $senha)) {
-            $_SESSION["login"] = $login;
-        }
+    function login($login) {
+        $_SESSION["login"] = $login;
     }
     function logout() {
         $_SESSION["login"] = "";

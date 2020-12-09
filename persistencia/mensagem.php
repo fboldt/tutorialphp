@@ -1,14 +1,11 @@
 <?php
 require_once "mensagem/modelo.php";
+require_once "persistencia/conexao.php";
 
-class MysqlMensagem implements PersisteMensagem {
-    private $mysqlconnection;
+class PersistenciaMensagem implements PersisteMensagem {
+    private $persistencia;
     function __construct() {
-        $hostname = 'localhost';
-        $database = 'tutorialphp';
-        $username = 'francisco';
-        $password = 'francisco';
-        $this->mysqlconnection = new mysqli($hostname, $username, $password, $database);
+        $this->persistencia = getConexao();
     }
     function criaTabelaMensagens() {
         $query = "CREATE TABLE IF NOT EXISTS mensagens (
@@ -19,12 +16,12 @@ class MysqlMensagem implements PersisteMensagem {
             usuid INT NOT NULL,
             FOREIGN KEY (usuid) REFERENCES usuarios(id)
         )";
-        $result = $this->mysqlconnection->query($query);
+        $result = $this->persistencia->query($query);
         return $result;
     }
     private function getUsuarioId($login) {
         $query = "SELECT id FROM usuarios WHERE login='$login' LIMIT 1";
-        $result = $this->mysqlconnection->query($query);
+        $result = $this->persistencia->query($query);
         $usuid = NULL;
         if ($result && $result->num_rows > 0) {
             $usuid = $result->fetch_array(MYSQLI_ASSOC)['id'];
@@ -38,13 +35,13 @@ class MysqlMensagem implements PersisteMensagem {
             $texto = $mensagem['texto'];
             $tempo = $mensagem['quando'];
             $query = "INSERT INTO mensagens (texto, tempo, usuid) VALUES ('$texto', '$tempo', '$usuid')";
-            $result = $this->mysqlconnection->query($query);
+            $result = $this->persistencia->query($query);
         }
         return $result;
     }
     private function getLoginUsuario($usuid) {
         $query = "SELECT login FROM usuarios WHERE id='$usuid' LIMIT 1";
-        $result = $this->mysqlconnection->query($query);
+        $result = $this->persistencia->query($query);
         $login = NULL;
         if ($result && $result->num_rows > 0) {
             $login = $result->fetch_array(MYSQLI_ASSOC)['login'];
@@ -53,7 +50,7 @@ class MysqlMensagem implements PersisteMensagem {
     }
     function carregaMensagens() {
         $query = "SELECT * FROM mensagens";
-        $result = $this->mysqlconnection->query($query);
+        $result = $this->persistencia->query($query);
         $mensagens = array();
         while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
             $login = $this->getLoginUsuario($row['usuid']);

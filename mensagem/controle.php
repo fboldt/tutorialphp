@@ -1,22 +1,21 @@
 <?php
 require_once "mensagem/modelo.php";
-require_once "usuario/controle.php";
-require_once "mensagem/mysql.php";
+require_once "usuario/sessao.php";
 
 class ControleMensagem {
-    private $mysql;
-    function __construct() {
-        $this->mysql = new MysqlMensagem();
+    private $persistencia;
+    function __construct(PersisteMensagem $persistencia) {
+        $this->persistencia = $persistencia;
     }
     function getMensagens() {
-        return array_reverse($this->mysql->carregaMensagens());
+        return array_reverse($this->persistencia->carregaMensagens());
     }
     function insereMensagem($texto) {
-        $controleUsuario = new ControleUsuario();
-        $quem = $controleUsuario->getLogin();
+        $sessao = Sessao();
+        $quem = $sessao->getLogin();
         $quando = date("Y-m-d H:i:s");
         $mensagem = criaMensagem($texto, $quem, $quando);
-        $this->mysql->salvaMensagem($mensagem);
+        $this->persistencia->salvaMensagem($mensagem);
     }
 }
 ?>

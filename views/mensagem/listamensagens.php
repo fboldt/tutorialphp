@@ -1,6 +1,6 @@
 <?php
-require_once "mensagem/controle.php";
-$controleMensagem = new ControleMensagem();
+require_once "controle.php";
+$controleMensagem = criaControleMensagem();
 $mensagens = $controleMensagem->getMensagens();
 
 foreach($mensagens as $mensagem) {
