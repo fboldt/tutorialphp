@@ -4,7 +4,7 @@ $controleUsuario = new ControleUsuario();
 $login = $controleUsuario->getLogin();
 
 if (!empty($login)) {
-    require_once 'inseremensagemform.html';
+    require_once 'mensagem/views/inseremensagemform.html';
 }
 
 ?>

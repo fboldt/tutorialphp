@@ -4,10 +4,10 @@ $controleUsuario = new ControleUsuario();
 $login = $controleUsuario->getLogin();
 
 if (empty($login)) {
-    require_once 'loginform.html';
+    require_once 'usuario/views/loginform.html';
 } else {
     echo $login;
-    echo ' <a href="logoutaction.php">logout</a>';
+    echo ' <a href="usuario/views/logoutaction.php">logout</a>';
 }
 
 ?>

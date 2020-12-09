@@ -1,8 +1,8 @@
 <?php
+chdir("../../");
 require_once "usuario/controle.php";
 $controleUsuario = new ControleUsuario();
-$controleUsuario->login($_POST["login"], $_POST["senha"]);
+$controleUsuario->logout();
 
-require_once 'index.php';
-
+header("Location: /tutorialphp/");
 ?>
