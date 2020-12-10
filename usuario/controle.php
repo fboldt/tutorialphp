@@ -3,13 +3,11 @@ require_once "usuario/sessao.php";
 require_once "usuario/credencial.php";
 
 class ControleUsuario {
-    private $persistencia;
     private $sessao;
     private $credencial;
     function __construct(PersisteCredencial $persistencia) {
-        $this->persistencia = $persistencia;
         $this->sessao = new Sessao();
-        $this->credencial = new Credencial($this->persistencia);
+        $this->credencial = new Credencial($persistencia);
     }
     function getLogin() {
         $login = $this->sessao->getLogin();
@@ -24,8 +22,7 @@ class ControleUsuario {
         $this->sessao->logout();
     }
     function insereLoginSenha($login, $senha) {
-        $credencial = new Credencial($this->persistencia);
-        $credencial->insereLoginSenha($login, $senha);
+        $this->credencial->insereLoginSenha($login, $senha);
     }
 }
 ?>

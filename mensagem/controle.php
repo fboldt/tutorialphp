@@ -11,7 +11,7 @@ class ControleMensagem {
         return array_reverse($this->persistencia->carregaMensagens());
     }
     function insereMensagem($texto) {
-        $sessao = Sessao();
+        $sessao = new Sessao();
         $quem = $sessao->getLogin();
         $quando = date("Y-m-d H:i:s");
         $mensagem = criaMensagem($texto, $quem, $quando);
