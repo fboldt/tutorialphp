@@ -17,5 +17,13 @@ class ControleMensagem {
         $mensagem = criaMensagem($texto, $quem, $quando);
         $this->persistencia->salvaMensagem($mensagem);
     }
+    function removeMensagem($quem, $quando) {
+        $sessao = new Sessao();
+        $login = $sessao->getLogin();
+        if ($login == $quem) {
+            $mensagem = criaMensagem("", $quem, $quando);
+            $this->persistencia->removeMensagem($mensagem);
+        }
+    }
 }
 ?>

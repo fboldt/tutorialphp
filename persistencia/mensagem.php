@@ -28,6 +28,12 @@ class PersistenciaMensagem implements PersisteMensagem {
         }
         return $usuid;
     }
+    function removeMensagem($mensagem) {
+        $usuid = $this->getUsuarioId($mensagem['quem']);
+        $tempo = $mensagem['quando'];
+        $query = "DELETE FROM mensagens WHERE usuid='$usuid' AND tempo='$tempo'";
+        $this->persistencia->query($query);
+    }
     function salvaMensagem($mensagem) {
         $usuid = $this->getUsuarioId($mensagem['quem']);
         $result = NULL;
