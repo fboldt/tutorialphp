@@ -1,3 +1,3 @@
 <?php
-require_once "persistencia/mysql/controle.php";
+require_once "persistencia/postgres/controle.php";
 ?>
