@@ -20,19 +20,14 @@ class PersistenciaUsuario implements PersisteCredencial {
         $query = "INSERT INTO usuarios (login, senha) VALUES ('$login','$senha')";
         $result = $this->persistencia->query($query);
     }
-    function carregaUsuarios() {
-        $query = "SELECT * FROM usuarios";
+    function getSenha($login) {
+        $query = "SELECT senha FROM usuarios WHERE login='$login'";
         $result = $this->persistencia->query($query);
-        $usuarios = array();
-        while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
-            $usuarios[$row['login']] = $row['senha'];
+        $senha = NULL;
+        if ($result && $result->num_rows > 0) {
+            $senha = $result->fetch_array(MYSQLI_ASSOC)['senha'];
         }
-        return $usuarios;
-    }
-    function salvaUsuarios($usuarios) {
-        foreach($usuarios as $login => $senha) {
-            $this->insereUsuario($login, $senha);
-        }
+        return $senha;
     }
 }
 ?>
