@@ -1,6 +1,6 @@
 <?php
 require_once "mensagem/modelo.php";
-require_once "persistencia/conexao.php";
+require_once "persistencia/mysql/conexao.php";
 
 class PersistenciaMensagem implements PersisteMensagem {
     private $persistencia;

@@ -1,6 +1,6 @@
 <?php
 require_once "usuario/credencial.php";
-require_once "persistencia/conexao.php";
+require_once "persistencia/mysql/conexao.php";
 
 class PersistenciaUsuario implements PersisteCredencial {
     private $persistencia;
