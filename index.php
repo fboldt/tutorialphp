@@ -6,7 +6,7 @@
 </head>
 
 <body>
-    <h1><a href="/tutorialphp/">Mural de notas</a></h1>
+    <h1>Mural de notas</h1>
     <?php require_once 'views/usuario/usuariologado.php'; ?>
     <?php require_once 'views/mensagem/inseremensagem.php'; ?>
     <br>

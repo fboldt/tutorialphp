@@ -4,5 +4,5 @@ require_once "controle.php";
 $controleMensagem = criaControleMensagem();
 $controleMensagem->removeMensagem($_POST['quem'], $_POST['quando']);
 
-header("Location: /tutorialphp/");
+header("Location: ../../index.php");
 ?>

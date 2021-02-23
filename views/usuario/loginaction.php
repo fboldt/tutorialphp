@@ -4,5 +4,5 @@ require_once "controle.php";
 $controleUsuario = criaControleUsuario();
 $controleUsuario->login($_POST["login"], $_POST["senha"]);
 
-header("Location: /tutorialphp/");
+header("Location: ../../index.php");
 ?>

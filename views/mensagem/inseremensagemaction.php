@@ -4,5 +4,5 @@ require_once "controle.php";
 $controleMensagem = criaControleMensagem();
 $controleMensagem->insereMensagem($_POST['texto']);
 
-header("Location: /tutorialphp/");
+header("Location: ../../index.php");
 ?>
