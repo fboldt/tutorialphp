@@ -1,10 +1,10 @@
 <?php
+require_once getcwd() . '/vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(getcwd());
+$dotenv->load();
+
 function getConexao() {
-    $hostname = 'localhost';
-    $database = 'tutorialphp';
-    $username = 'francisco';
-    $password = 'francisco';
-    $stringconexao = "host=$hostname dbname=$database user=$username password=$password";
+    $stringconexao = $_ENV['POSTGRES_STRING_CONNECTION'];
     return pg_connect($stringconexao);
 }
 ?>
