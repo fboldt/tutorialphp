@@ -1,10 +1,13 @@
 <?php
-require_once getcwd() . '/vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable(getcwd());
-$dotenv->load();
+// require_once getcwd() . '/vendor/autoload.php';
+// $dotenv = Dotenv\Dotenv::createImmutable(getcwd());
+// $dotenv->load();
 
+// function getConexao() {
+//     $stringconexao = $_ENV['POSTGRES_STRING_CONNECTION'];
+//     return pg_connect($stringconexao);
+// }
 function getConexao() {
-    $stringconexao = $_ENV['POSTGRES_STRING_CONNECTION'];
-    return pg_connect($stringconexao);
+    return pg_connect(getenv("POSTGRES_STRING_CONNECTION"));
 }
 ?>
