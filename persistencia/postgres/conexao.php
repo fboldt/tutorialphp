@@ -1,13 +1,13 @@
 <?php
-// require_once getcwd() . '/vendor/autoload.php';
-// $dotenv = Dotenv\Dotenv::createImmutable(getcwd());
-// $dotenv->load();
-
 // function getConexao() {
-//     $stringconexao = $_ENV['POSTGRES_STRING_CONNECTION'];
-//     return pg_connect($stringconexao);
+//     $hostname = 'localhost';
+//     $database = 'tutorialphp';
+//     $username = 'francisco';
+//     $password = 'francisco';
+//     $connstring = "host=$hostname dbname=$database user=$username password=$password";
+//     return pg_connect($connstring);
 // }
 function getConexao() {
-    return pg_connect(getenv("POSTGRES_STRING_CONNECTION"));
+    return pg_connect(getenv("DATABASE_URL"));
 }
 ?>
